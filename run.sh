@@ -1,2 +1,4 @@
 #!/bin/bash
-luajit main.lua
+
+/home/pb1672/char-level/luajit main.lua
+
