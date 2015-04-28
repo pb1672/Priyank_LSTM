@@ -5,8 +5,8 @@ require 'io'
 ptb = require('data')
 
 -- parameters used for the pretrained model
-params = {batch_size=40,
-          seq_length=35,
+params = {batch_size=32,
+          seq_length=50,
           layers=2,
           decay=1.3,
           rnn_size=1000,
@@ -21,9 +21,10 @@ params = {batch_size=40,
 
 function compute_probability()
         -- get the index in the vocab map of the character
-    idx = ptb.vocab_map[predictor]
+    loc = ptb.vocab_map[predictor]
       -- fill p with the same character
-    for i=1,params.batch_size do p[i] = idx end
+    for i=1,params.batch_size do p[i] = loc end
+    s=model.s[0]
     perp_tmp, model.s[1], prediction_temp = unpack(model.rnns[1]:forward({p, q, model.s[0]}))
     prediction_final = prediction_temp[1]:clone():float()
       
