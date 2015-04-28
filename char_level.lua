@@ -220,10 +220,8 @@ function readline()
   return line
 end
 function  generate_next(i,len,p,q,prev_char)
-  --  index in the vocab map of the word
   local idx = ptb.vocab_map[prev_char]
   for i=1,params.batch_size do p[i] = idx end
-  -- local s = model.s[i - 1]
   perp_tmp, model.s[1], pred_tmp = unpack(model.rnns[1]:forward({p, q, model.s[0]}))
   xx = pred_tmp[1]:clone():float()
   xx = torch.multinomial(torch.exp(xx),1)
@@ -257,7 +255,6 @@ function query_sentences()
       g_replace_table(model.s[0], model.start_s)
       -- character that will be used to predict the next
       prev_char = line[#line]
-      -- tensors to hold words
       local p = transfer_data(torch.zeros(params.batch_size))
       local q = transfer_data(torch.ones(params.batch_size))
       for i = 1,len do
