@@ -1,0 +1,32 @@
+# General comments and issues with running your submission
+ok
+
+# Your test set score
+442000  Perplexity: 437.064470  avgnll: 1.085729        fails: 0
+
+# Your answer to the questions (no comment means correct)
++ Q1
++ Q2
++ Q3
++ Q4 "state during backward pass" > no, it's the gradient of the objective function wrt the state.
++ Q5 Gradient clipping
++ Q6
++ Q7 What do you feed in as gradOutput? From code I see you do it right.
+
+# Comments on your code
+Your query_sentences() only feeds in one character, that's not gonna go anywhere.
+No need to flush that often :)
+Your implementation of momentum looks incorrect, you need to keep a separate momentum vector.
+But I appreciate that you tried momentum.
+
+# Comments on your write-up
+That validation perplexity of 286 is very surprising/suspicious, as training is at 458.
+Could only be explained by way too high dropout or more likely a bug.
+
+# Grades
++ Test set performance (out of 25): 20
++ Questions            (out of 25): 17
++ Code                 (out of 25): 20
++ Write-up and effort  (out of 25): 25
++ Lateness deduction              :
++ TOTAL (out of 100):             : 82
